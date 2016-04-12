@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Crud_JSF_Hibernate</title>
+    </h:head>
+    <h:body>
+        <center>
+            <h:form>
+                Cadastro de Pessoas
+                <h:panelGrid columns="2">
+                    Nome: <h:inputText id="nomeTxt" value="#{pessoaMB.pessoa.nome}"/>
+                    Email: <h:inputText id="emailTxt" value="#{pessoaMB.pessoa.email}"/>
+                    Telefone: <h:inputText id="telefoneTxt" value="#{pessoaMB.pessoa.telefone}"/>
+                    <h:inputHidden/>
+                    <h:commandButton value="Cadastrar" action="#{pessoaMB.adicionarPessoa()}"/>
+                </h:panelGrid>
+                <h:dataTable value="#{pessoaMB.listarPessoas()}" var="q" border="2">
+                    <h:column>
+                        <f:facet name="header">
+                            Id
+                        </f:facet>
+                        <h:outputText value="#{q.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Nome
+                        </f:facet>
+                        <h:outputText value="#{q.nome}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Email
+                        </f:facet>
+                        <h:outputText value="#{q.email}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Telefone
+                        </f:facet>
+                        <h:outputText value="#{q.telefone}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Ações
+                        </f:facet>
+                        <h:commandLink value="Remover" action="#{pessoaMB.removerPessoa(q)}"/>
+                        |<h:commandLink value="Atualizar" action="#{pessoaMB.carregarPessoas(q)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </center>
+    </h:body>
+</html>
+
